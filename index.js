@@ -2,7 +2,7 @@
 
 //# Uses Nexmo's API
 //# Referenced: https://www.nexmo.com/blog/2016/05/31/building-sms-google-sheets-application-aws-lambda-dr/
-
+//# TODO : Add better error handling, and configify the Welcome Message
 
 // Configuring the AWS SDK
 var AWS = require('aws-sdk');

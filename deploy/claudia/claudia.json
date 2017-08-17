@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "lacto-messaging-executor",
+    "name": "lacto-messaging",
+    "region": "us-east-1"
+  }
+}

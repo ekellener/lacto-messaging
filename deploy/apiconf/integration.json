@@ -1,0 +1,10 @@
+{
+    "passthroughBehavior": "WHEN_NO_TEMPLATES", 
+    "cacheKeyParameters": [], 
+    "integrationHttpMethod": "POST",
+    "requestTemplates": {
+        "application/json": "{\n\"type\" : \"$input.params('type')\",\n\"to\" : \"$input.params('to')\",\n\"msisdn\" : \"$input.params('msisdn')\",\n\"messageId\" : \"$input.params('messageId')\",\n\"message-timestamp\" : \"$input.params('message-timestamp')\",\n\"text\" : \"$input.params('text')\"\n}"
+    }, 
+    "cacheNamespace": "87n1xy", 
+    "type": "AWS"
+}

@@ -1,0 +1,6 @@
+mbda": {
+    "role": "alexa-icloudtools-executor",
+    "name": "lacto-messaging",
+    "region": "us-east-1"
+  }
+}

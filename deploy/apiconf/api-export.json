@@ -1,0 +1,53 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2017-08-04T03:44:09Z",
+    "title" : "DefaultLambdaMicroservice"
+  },
+  "basePath" : "/prod",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/sms" : {
+      "x-amazon-apigateway-get-method" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "messageId",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "msisdn",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "text",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "message-timestamp",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "type",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "to",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          }
+        }
+      }
+    }
+  }
+}

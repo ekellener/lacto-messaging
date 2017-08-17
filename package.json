@@ -1,0 +1,32 @@
+{
+  "name": "lacto-messaging",
+  "version": "1.0.0",
+  "description": "Lambda function for processing inbound requests (from Nexmo) through the API Gateway",
+  "main": "index.js",
+  "author": {
+    "name": "Erik Kellener",
+    "email": "erik@kellener.com",
+    "url": "http://www.kellener.com"
+  },
+  "config": {
+    "awsRegion": "us-east-1",
+    "claudiaConfig": "./deploy/claudia/claudia.json",
+    "awsProfile": "lacto"
+  },
+  "private": true,
+  "scripts": {
+    "claudia-create": "./bin/cleanclaudia.sh $npm_package_name $npm_package_config_awsProfile ;claudia create --profile $npm_package_config_awsProfile --keep --name $npm_package_name  --timeout 21 --version dev --region $npm_package_config_awsRegion --handler index.handler  --config $npm_package_config_claudiaConfig --policies deploy/claudia/policies",
+    "claudia-create_test": "claudia create --profile $npm_package_config_awsProfile --keep --name $npm_package_name  --timeout 21 --version dev --region $npm_package_config_awsRegion --handler index.handler  --config $npm_package_config_claudiaConfig --policies deploy/claudia/policies",
+    "claudia-update": "claudia update --profile $npm_package_config_awsProfile  --version dev --config $npm_package_config_claudiaConfig",
+    "claudia-destroy": "claudia destroy --profile $npm_package_config_awsProfile  --version dev --config $npm_package_config_claudiaConfig && rm $npm_package_config_claudiaConfig",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "JSON": "^1.0.0",
+    "aws-sdk": "^2.94.0"
+  },
+  "devDependencies": {
+    "claudia": "^2.14.2"
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "apiKeyRequired": false, 
+    "httpMethod": "ANY", 
+    "requestParameters": {
+        "method.request.querystring.msisdn": false, 
+        "method.request.querystring.type": false, 
+        "method.request.querystring.message-timestamp": false, 
+        "method.request.querystring.to": false, 
+        "method.request.querystring.text": false, 
+        "method.request.querystring.messageId": false
+    }, 
+    "authorizationType": "NONE"
+}

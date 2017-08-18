@@ -32,12 +32,13 @@ exports.handler = (event, context, callback) => {
                 Endpoint: event.msisdn
             };
 
-            // Add sender's phone to subscriber
+            // Add sender's phone as a subscriber to the Topic
             sns.subscribe(params, function (err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else {
                     console.log(data);           // successful response
                     // Send an SMS back to the subscriber to let them know they've been added
+                    // TODO, theoretically, could use an SNS subscription to fire off a lambda call that just publishes the welcom
                     sns.publish({
                         Message: "Welcome to the LACTO Forum SMS group. To Opt-out, just reply to using the word STOP.",
                         PhoneNumber: event.msisdn

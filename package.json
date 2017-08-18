@@ -21,6 +21,11 @@
     "claudia-destroy": "claudia destroy --profile $npm_package_config_awsProfile  --version dev --config $npm_package_config_claudiaConfig && rm $npm_package_config_claudiaConfig",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ekellener/lacto-messaging..git"
+  },
+
   "license": "ISC",
   "dependencies": {
     "JSON": "^1.0.0",

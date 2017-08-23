@@ -10,28 +10,36 @@
   },
   "config": {
     "awsRegion": "us-east-1",
-    "claudiaConfig": "./deploy/claudia/claudia.json",
-    "awsProfile": "lacto"
+    "awsProfile": "default",
+    "claudiaConfig": "./deploy/claudia/claudia.json"
   },
   "private": true,
   "scripts": {
-    "claudia-create": "./bin/cleanclaudia.sh $npm_package_name $npm_package_config_awsProfile ;claudia create --profile $npm_package_config_awsProfile --keep --name $npm_package_name  --timeout 21 --version dev --region $npm_package_config_awsRegion --handler index.handler  --config $npm_package_config_claudiaConfig --policies deploy/claudia/policies",
-    "claudia-create_test": "claudia create --profile $npm_package_config_awsProfile --keep --name $npm_package_name  --timeout 21 --version dev --region $npm_package_config_awsRegion --handler index.handler  --config $npm_package_config_claudiaConfig --policies deploy/claudia/policies",
-    "claudia-update": "claudia update --profile $npm_package_config_awsProfile  --version dev --config $npm_package_config_claudiaConfig",
-    "claudia-destroy": "claudia destroy --profile $npm_package_config_awsProfile  --version dev --config $npm_package_config_claudiaConfig && rm $npm_package_config_claudiaConfig",
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "claudia-create": "./bin/cleanclaudia.sh $npm_package_name $npm_package_config_awsProfile  && claudia create --set-env NODE_ENV=$NODE_ENV --api-module index --profile $npm_package_config_awsProfile --keep --name $npm_package_name  --timeout 21 --version $NODE_ENV --region $npm_package_config_awsRegion   --config $npm_package_config_claudiaConfig --policies deploy/claudia/policies",
+     "claudia-update": "claudia update  --version $NODE_ENV  --api-module index --keep --set-env NODE_ENV=$NODE_ENV --config $npm_package_config_claudiaConfig",
+    "claudia-destroy": "claudia destroy --config $npm_package_config_claudiaConfig",
+    "claudia-test": "claudia test-lambda --event ./test/request.json  --profile $npm_package_config_awsProfile --set-env NODE_ENV=$NODE_ENV -version $NODE_ENV --api-module index --config $npm_package_config_claudiaConfig",
+    "test": "./node_modules/.bin/mocha ./test/lambda_test.js "
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ekellener/lacto-messaging..git"
+    "url": "https://github.com/ekellener/lacto-messaging.git"
   },
-
   "license": "ISC",
   "dependencies": {
     "JSON": "^1.0.0",
-    "aws-sdk": "^2.94.0"
+    "asyncawait": "^1.0.6",
+    "aws-sdk": "^2.94.0",
+    "bluebird": "^3.5.0",
+    "claudia-api-builder": "^2.5.1",
+    "config": "^1.26.2"
   },
   "devDependencies": {
-    "claudia": "^2.14.2"
+    "chai": "^4.1.1",
+    "chai-spies": "^0.7.1",
+    "claudia": "^2.14.2",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.1",
+    "sinon-chai": "^2.13.0"
   }
 }

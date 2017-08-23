@@ -1,0 +1,141 @@
+{
+    "v": 3,
+    "rawBody": "",
+    "normalizedHeaders": {
+        "accept": "*/*",
+        "cloudfront-forwarded-proto": "https",
+        "cloudfront-is-desktop-viewer": "true",
+        "cloudfront-is-mobile-viewer": "false",
+        "cloudfront-is-smarttv-viewer": "false",
+        "cloudfront-is-tablet-viewer": "false",
+        "cloudfront-viewer-country": "US",
+        "host": "f9aswytjy0.execute-api.us-east-1.amazonaws.com",
+        "user-agent": "Nexmo/MessagingHUB/v1.0",
+        "via": "1.1 98dbec6ba78c561cf37410a3bbd19a4e.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "BDUzkXaO6Iqi2vyvD6hKP36B87ltM_m5d0VV3q-6vfAQ7ybGO0GFzw==",
+        "x-amzn-trace-id": "Root=1-59975990-2e9780516768d67158734097",
+        "x-forwarded-for": "174.36.197.202, 52.46.14.61",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https"
+    },
+    "lambdaContext": {
+        "callbackWaitsForEmptyEventLoop": false,
+        "logGroupName": "/aws/lambda/lacto-messaging",
+        "logStreamName": "2017/08/18/[9]e3a5bff3c47b49a79e6f6ab0c5858dca",
+        "functionName": "lacto-messaging",
+        "memoryLimitInMB": "128",
+        "functionVersion": "9",
+        "invokeid": "bb96e1bb-845a-11e7-86ea-b5a8e34db731",
+        "awsRequestId": "bb96e1bb-845a-11e7-86ea-b5a8e34db731",
+        "invokedFunctionArn": "arn:aws:lambda:us-east-1:753003971152:function:lacto-messaging:dev"
+    },
+    "proxyRequest": {
+        "resource": "/sms",
+        "path": "/sms",
+        "httpMethod": "GET",
+        "headers": {
+            "Accept": "*/*",
+            "CloudFront-Forwarded-Proto": "https",
+            "CloudFront-Is-Desktop-Viewer": "true",
+            "CloudFront-Is-Mobile-Viewer": "false",
+            "CloudFront-Is-SmartTV-Viewer": "false",
+            "CloudFront-Is-Tablet-Viewer": "false",
+            "CloudFront-Viewer-Country": "US",
+            "Host": "f9aswytjy0.execute-api.us-east-1.amazonaws.com",
+            "User-Agent": "Nexmo/MessagingHUB/v1.0",
+            "Via": "1.1 98dbec6ba78c561cf37410a3bbd19a4e.cloudfront.net (CloudFront)",
+            "X-Amz-Cf-Id": "BDUzkXaO6Iqi2vyvD6hKP36B87ltM_m5d0VV3q-6vfAQ7ybGO0GFzw==",
+            "X-Amzn-Trace-Id": "Root=1-59975990-2e9780516768d67158734097",
+            "X-Forwarded-For": "174.36.197.202, 52.46.14.61",
+            "X-Forwarded-Port": "443",
+            "X-Forwarded-Proto": "https"
+        },
+        "queryStringParameters": {
+            "messageId": "0C000000545CBA92",
+            "text": "Test101",
+            "to": "13105551212",
+            "keyword": "TEST101",
+            "msisdn": "12125551212",
+            "type": "text",
+            "message-timestamp": "2017-08-18 01:59:19"
+        },
+        "pathParameters": null,
+        "stageVariables": {
+            "lambdaVersion": "dev"
+        },
+        "requestContext": {
+            "path": "/dev/sms",
+            "accountId": "768003971152",
+            "resourceId": "xantr0",
+            "stage": "dev",
+            "requestId": "bb96e187-845a-11e7-8cb0-0f8e6afbfa31",
+            "identity": {
+                "cognitoIdentityPoolId": null,
+                "accountId": null,
+                "cognitoIdentityId": null,
+                "caller": null,
+                "apiKey": "",
+                "sourceIp": "174.36.197.202",
+                "accessKey": null,
+                "cognitoAuthenticationType": null,
+                "cognitoAuthenticationProvider": null,
+                "userArn": null,
+                "userAgent": "Nexmo/MessagingHUB/v1.0",
+                "user": null
+            },
+            "resourcePath": "/sms",
+            "httpMethod": "GET",
+            "apiId": "f9aswytjy0"
+        },
+        "body": null,
+        "isBase64Encoded": false
+    },
+    "queryString": {
+        "messageId": "0C000000545CBA92",
+        "text": "Test101",
+        "to": "13105551212",
+        "keyword": "TEST101",
+        "msisdn": "12125551212",
+        "type": "text",
+        "message-timestamp": "2017-08-18 01:59:19"
+    ,
+    "env": {
+        "lambdaVersion": "dev"
+    },
+    "headers": {
+        "Accept": "*/*",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Host": "f9asgytjy0.execute-api.us-east-1.amazonaws.com",
+        "User-Agent": "Nexmo/MessagingHUB/v1.0",
+        "Via": "1.1 98dbec6ba78c561cf37410a3bbd19a4e.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "BDUzkXaO6Iqi2vyvD6hKP36B87ltM_m5d0VV3q-6vfAQ7ybGO0GFzw==",
+        "X-Amzn-Trace-Id": "Root=1-59975990-2e9780516768d67158734097",
+        "X-Forwarded-For": "174.36.197.202, 52.46.14.61",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "pathParams": {},
+    "body": "",
+    "context": {
+        "method": "GET",
+        "path": "/sms",
+        "stage": "dev",
+        "sourceIp": "174.36.197.202",
+        "accountId": null,
+        "user": null,
+        "userAgent": "Nexmo/MessagingHUB/v1.0",
+        "userArn": null,
+        "caller": null,
+        "apiKey": "",
+        "authorizerPrincipalId": null,
+        "cognitoAuthenticationProvider": null,
+        "cognitoAuthenticationType": null,
+        "cognitoIdentityId": null,
+        "cognitoIdentityPoolId": null
+    }
+}

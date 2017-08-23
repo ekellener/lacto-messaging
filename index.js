@@ -1,56 +1,51 @@
 'use strict';
 
+var Promise = require('bluebird');
+var config = require('config');
+
 //# Uses Nexmo's API
 //# Referenced: https://www.nexmo.com/blog/2016/05/31/building-sms-google-sheets-application-aws-lambda-dr/
 //# TODO : Add better error handling, and configify the Welcome Message
 
-// Configuring the AWS SDK
-var AWS = require('aws-sdk');
-AWS.config.update({ region: 'us-east-1' });
+// Use a default message if one doesn't exist in the config file
+var configWelcomeMessage = config.has('WelcomeMessage') ? config.get('WelcomeMessage') : "Hello.";
 
+var AWS = require('aws-sdk');
+var APIBuilder = require('claudia-api-builder');
+
+// Configuring the AWS SDK
+AWS.config.setPromisesDependency(require('bluebird'));
 console.log('Loading function');
 
+var apiSMS = new APIBuilder();
+module.exports = apiSMS;
 
-exports.handler = (event, context, callback) => {
 
+// Register /sms GET for Nexmo API
+apiSMS.get('/sms', function (event) {
     console.log('Received event:', JSON.stringify(event, null, 2));
-    var snsTopicArn, params;
+    var snsTopicArn, params, res, data;
     var sns = new AWS.SNS();
-    sns.listTopics({}, function (err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-        }
-        else {
-            // successful response
-            snsTopicArn = JSON.stringify(data.Topics[0].TopicArn);
+    return sns.listTopics({}).promise()
+        .then(function (dataTopics) {
+            snsTopicArn = JSON.stringify(dataTopics.Topics[0].TopicArn);
             snsTopicArn = snsTopicArn.replace(/['"]+/g, '');
-            console.log(snsTopicArn);
-
             params = {
                 Protocol: 'sms',
                 TopicArn: snsTopicArn,
-                Endpoint: event.msisdn
+                Endpoint: event.queryString.msisdn
             };
+        })
+        .then(function () {
+ //           console.log(params);
+            return sns.subscribe(params).promise();
+        })
+        .then(sns.publish({ Message: configWelcomeMessage, PhoneNumber: event.queryString.msisdn }).promise())
+        .catch(function (e) {
+            console.error(e.message);
+            console.error(e.stack);
+        });
+});
 
-            // Add sender's phone as a subscriber to the Topic
-            sns.subscribe(params, function (err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else {
-                    console.log(data);           // successful response
-                    // Send an SMS back to the subscriber to let them know they've been added
-                    // TODO, theoretically, could use an SNS subscription to fire off a lambda call that just publishes the welcom
-                    sns.publish({
-                        Message: "Welcome to the LACTO Forum SMS group. To Opt-out, just reply to using the word STOP.",
-                        PhoneNumber: event.msisdn
-                    }, function (err, data) {
-                        if (err) {
-                            console.log(err.stack);
-                        }
-                    });
-                }
-            })
-        }
-    });
 
-    callback(null, event.msidn);
-};
+

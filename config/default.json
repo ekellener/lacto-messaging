@@ -1,0 +1,12 @@
+{
+    "WelcomeMessage": "Welcome SMS Group. To Opt-out, just replay using the word STOP.",
+    "TestConfigNexmo": {
+        "messageId": "0B000000754B1F12",
+        "text": "Test Message",
+        "to": "2135551212",
+        "keyword": "Test Message",
+        "msisdn": "3105551212",
+        "type": "text",
+        "message-timestamp": "2017-08-18 01:51:15"
+    }
+}

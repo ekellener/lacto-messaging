@@ -1,4 +1,4 @@
-This is a simple node project that is used to add SMS subscribers to an subscription. 
+This is a simple node project that is used to add SMS subscribers to a subscription. 
 
 It has been implemented with :
  - AWS Lambda 

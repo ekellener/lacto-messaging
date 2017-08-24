@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "lacto-messaging-executor",
+    "name": "lacto-messaging",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "s12fps8ep3",
+    "module": "index"
+  }
+}

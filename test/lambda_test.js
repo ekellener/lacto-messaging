@@ -15,7 +15,7 @@ const LAMBDA_NAME = claudiaConfig.lambda.name;
 AWS.config.update({ region: AWS_REGION });
 
 // Use a default message if one doesn't exist in the config file
-var config = config.has('TestConfigNexmo') ? config.get('TextConfigNexmo') : {
+var config = config.has('TestConfigNexmo') ? config.get('TestConfigNexmo') : {
     "messageId": "0B000000754B1F12",
     "text": "Need to configure default",
     "to": "2135551212",
@@ -44,7 +44,8 @@ describe('Lambda integration tests', () => {
         api.proxyRouter({
             requestContext: {
                 resourcePath: '/sms',
-                httpMethod: 'GET'
+                httpMethod: 'GET',
+                accountId: '123456790'
             },
             queryStringParameters: {
                 "messageId": "0B000000754B1F12",

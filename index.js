@@ -17,6 +17,8 @@ var APIBuilder = require('claudia-api-builder');
 AWS.config.setPromisesDependency(require('bluebird'));
 console.log('Loading function');
 
+
+//const acct = AWS.config.acc
 var apiSMS = new APIBuilder();
 module.exports = apiSMS;
 
@@ -24,12 +26,14 @@ module.exports = apiSMS;
 // Register /sms GET for Nexmo API
 apiSMS.get('/sms', function (event) {
     console.log('Received event:', JSON.stringify(event, null, 2));
-    var snsTopicArn, params, res, data;
+    var snsTopicArn, accountId, userArn, userArnAry, params, res, data;
+    var sts = new AWS.STS();
     var sns = new AWS.SNS();
-    return sns.listTopics({}).promise()
-        .then(function (dataTopics) {
-            snsTopicArn = JSON.stringify(dataTopics.Topics[0].TopicArn);
-            snsTopicArn = snsTopicArn.replace(/['"]+/g, '');
+    var region = AWS.config.region;
+    return sts.getCallerIdentity({}).promise()
+        .then(function (dataUser) {
+            accountId = JSON.stringify(dataUser.Account).replace(/['"]+/g, '');
+            snsTopicArn = "arn:aws:sns:"+region+":"+accountId+":"+config.SNSTopicName;
             params = {
                 Protocol: 'sms',
                 TopicArn: snsTopicArn,

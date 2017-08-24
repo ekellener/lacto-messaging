@@ -8,5 +8,6 @@
         "msisdn": "3105551212",
         "type": "text",
         "message-timestamp": "2017-08-18 01:51:15"
-    }
+    },
+    "SNSTopicName": "members"
 }

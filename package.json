@@ -10,14 +10,14 @@
   },
   "config": {
     "awsRegion": "us-east-1",
-    "awsProfile": "default",
+    "awsProfile": "lacto",
     "claudiaConfig": "./deploy/claudia/claudia.json"
   },
   "private": true,
   "scripts": {
       "claudia-create": "./bin/cleanclaudia.sh $npm_package_name $npm_package_config_awsProfile  && claudia create --set-env NODE_ENV=$NODE_ENV --api-module index --profile $npm_package_config_awsProfile --keep --name $npm_package_name  --timeout 21 --version $NODE_ENV --region $npm_package_config_awsRegion   --config $npm_package_config_claudiaConfig --policies deploy/claudia/policies",
-     "claudia-update": "claudia update  --version $NODE_ENV  --api-module index --keep --set-env NODE_ENV=$NODE_ENV --config $npm_package_config_claudiaConfig",
-    "claudia-destroy": "claudia destroy --config $npm_package_config_claudiaConfig",
+     "claudia-update": "claudia update  --profile $npm_package_config_awsProfile  --version $NODE_ENV  --api-module index --keep --set-env NODE_ENV=$NODE_ENV --config $npm_package_config_claudiaConfig",
+    "claudia-destroy": "claudia destroy --config $npm_package_config_claudiaConfig --profile $npm_package_config_awsProfile ",
     "claudia-test": "claudia test-lambda --event ./test/request.json  --profile $npm_package_config_awsProfile --set-env NODE_ENV=$NODE_ENV -version $NODE_ENV --api-module index --config $npm_package_config_claudiaConfig",
     "test": "./node_modules/.bin/mocha ./test/lambda_test.js "
   },

@@ -1,28 +1,36 @@
 #!/bin/sh
 
+# Disable and require env variables.
 usage() {
         echo `basename $0`: ERROR: $* 1>&2
-        echo usage: `basename $0` [base_package_name]  [aws_profile_name] '  - Cleanup claudia roles  removing roles, and policies' 1>&2
+        echo usage: `basename $0`  [application_name] '  - Cleanup claudia roles  removing roles, and policies' 1>&2
         exit 1
 }
 
-if [ -z "$2" ]; then
+
+
+# Need application stem name
+if [ -z "$1" ]; then
   usage
   exit 1
-else
-export AWS_DEFAULT_REGION="us-east-1"
-export AWS_DEFAULT_PROFILE=$2
 fi
 
+echo "${NODE_ENV:?Need to set NODE_ENV before proceeding}"
+echo "${AWS_DEFAULT_PROFILE:?Need to set AWS_DEFAULT_PROFILE before proceeding}"
+echo "${AWS_DEFAULT_REGION:?Need to set AWS_DEFAULT_REGION before proceeding}"
 
-echo "Running profile: $AWS_DEFAULT_PROFILE"
+
+echo "Running"
+echo "Profile: $AWS_DEFAULT_PROFILE"
+echo "Region: $AWS_DEFAULT_REGION"
+echo "Node Env: $NODE_ENV"
 
 #Initialization of variables
 roleName="${1}-executor"
 awsFunction=$1
 
-echo $roleName
-echo $awsFunction
+echo "Role: $roleName"
+echo "Function: $awsFunction"
 
 #Clean up Claudia
 echo "***  Attempting to delete existing roles,policies, and aliases..(may see errors)."
